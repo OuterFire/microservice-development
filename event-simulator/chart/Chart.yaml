@@ -1,0 +1,4 @@
+apiVersion: v2
+version: 0.0.1
+description: event-simulator helm chart
+name: event-simulator

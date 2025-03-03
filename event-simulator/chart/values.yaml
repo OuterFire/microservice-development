@@ -1,0 +1,6 @@
+enable: true
+
+simulator:
+  port: 8080
+  host: event-producer-svc
+  eventPerSecond: 1

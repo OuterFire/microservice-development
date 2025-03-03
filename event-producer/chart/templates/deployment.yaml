@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Chart.Name }}-image:0.0.1
+          imagePullPolicy: Never
+          env:
+            - name: LOG_LEVEL
+              value: {{ .Values.restServer.loglevel | quote }}
+            - name: REST_SERVER_PORT
+              value: {{ .Values.api.port | quote }}
+            - name: REST_SERVER_WRITE_TIMEOUT
+              value: {{ .Values.api.writeTimeout | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.redis.port | quote }}
+            - name: REDIS_HOST
+              value: {{ .Values.redis.host | quote }}
+            - name: REDIS_STREAM
+              value: {{ .Values.redis.stream | quote }}
+            - name: REDIS_STREAM_MAX_LEN
+              value: {{ .Values.redis.maxLen | quote }}
+            - name: REDIS_WRITE_TIMEOUT
+              value: {{ .Values.redis.readTimeout | quote }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.redis.podName | quote }}
+                  key: {{ include "rest-client.redis.password" . |  quote }}
+          ports:
+            - name: http-rest
+              containerPort: {{ .Values.api.port }}
+          volumeMounts:
+            - mountPath: "/tmp"
+              name: storage-volume
+      volumes:
+        - name: storage-volume
+          emptyDir: { }

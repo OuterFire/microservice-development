@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Chart.Name }}-image:0.0.1
+          imagePullPolicy: Never
+          env:
+            - name: LOG_LEVEL
+              value: {{ .Values.restClient.loglevel | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.redis.port | quote }}
+            - name: REDIS_HOST
+              value: {{ .Values.redis.host | quote }}
+            - name: REDIS_STREAM
+              value: {{ .Values.redis.stream | quote }}
+            - name: REDIS_CONSUMER
+              value: {{ .Values.redis.consumer | quote }}
+            - name: REDIS_CONSUMER_GROUP
+              value: {{ .Values.redis.consumerGroup | quote }}
+            - name: REDIS_READ_TIMEOUT
+              value: {{ .Values.redis.readTimeout | quote }}
+            - name: REDIS_RETRY_PERIOD
+              value: {{ .Values.redis.retryPeriod | quote }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.redis.podName | quote }}
+                  key: {{ include "rest-client.redis.password" . |  quote }}
+          ports:
+            - containerPort: 80

@@ -1,0 +1,21 @@
+apiVersion: v2
+version: 1.0.0
+description: application helm chart
+name: application
+dependencies:
+  - name: redis
+    version: 20.7.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+  - name: event-producer
+    version: 0.0.1
+    repository: "file://../event-producer/chart"
+    condition: event-producer.enabled
+  - name: event-consumer
+    version: 0.0.1
+    repository: "file://../event-consumer/chart"
+    condition: event-consumer.enabled
+  - name: event-simulator
+    version: 0.0.1
+    repository: "file://../event-simulator/chart"
+    condition: event-simulator.enabled

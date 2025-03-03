@@ -1,0 +1,22 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: robot-superuser
+rules:
+  - apiGroups: [""]
+    resources: ["*"]
+    verbs: ["*"]
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: robot-superuser
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+roleRef:
+  name: robot-superuser
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,32 @@
+@startuml
+skinparam {
+    wrapWidth 200
+    maxMessageSize 200
+}
+
+participant "Application" as app #application
+participant "event-producer" as producer #palegreen
+participant "redis" as redis #orange
+
+participant "event-consumer" as consumer #palegreen
+
+
+group on start-up
+    producer -> redis: init redis client
+    consumer -> redis: init redis client
+    producer -> redis: create stream: XADD NotificationStream MAXLEN ~ 100 * CreateStream 'stream created'
+    redis -> redis: stream created: NotificationStream
+    redis <- consumer: XREAD STREAM NotificationStream
+    consumer -> consumer: log event from redis stream
+end group
+
+group create Message Notification
+        app -> producer: POST /event -d {"description":"hello world"}
+        producer -> producer: process request body Event Notification
+        producer -> producer: build Message Notification
+        producer -> redis:  XADD NotificationStream MAXLEN ~ 100 * EventStream '{"id":1,"description":"demo", "timestamp":"2025-02-25T22:06:25.478310425Z"}'
+        redis <- consumer: XREAD STREAM NotificationStream
+        consumer -> consumer: log event from redis stream
+end group
+
+@enduml

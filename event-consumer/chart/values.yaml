@@ -1,0 +1,14 @@
+enable: true
+
+restClient:
+  loglevel: debug
+
+redis:
+  podName: redis
+  port: 6379
+  host: redis-master
+  stream: NotificationMessageStream
+  consumer: consumer
+  consumerGroup: demo_consumer_group
+  retryPeriod: 2
+  readTimeout: 10

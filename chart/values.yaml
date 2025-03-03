@@ -1,0 +1,16 @@
+event-producer:
+  enabled: true
+  redis:
+    host: redis-master
+
+event-consumer:
+  enabled: true
+  redis:
+    host: redis-master
+
+event-simulator:
+  enabled: true
+
+redis:
+  enabled: true
+  fullnameOverride: redis
