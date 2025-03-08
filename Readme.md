@@ -29,7 +29,12 @@ For more internal documents found in **documents/** folder:
 
 Deployment view of the microservices running in kubernetes cluster.
 
-<img src="documents/images/deployment.png" alt="drawing" width="602"/>
+<img src="documents/images/deployment.png" alt="drawing"/>
+
+Pod view of the deployed microservices.
+
+<img src="documents/images/pods.png" alt="drawing"/>
+
 
 ### event-producer microservice interfaces:
 
