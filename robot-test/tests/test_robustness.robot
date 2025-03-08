@@ -87,10 +87,4 @@ Test event-producer pod deleted unexpectedly
             #Log    ID: ${notification_message}[id], DESCRIPTION: ${notification_message}[description]
         END
 
-# kill event-producer
-
-
-# kill all pods
-
-
-# verify stream gets created after restart
+# Test verify stream gets created after restart

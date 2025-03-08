@@ -40,19 +40,3 @@ helm uninstall event-consumer
 ```text
 minikube image rm docker.io/library/event-consumer-image:0.0.1
 ```
-
-
-
-## Configuration parameters
-
-
-| Param               | Description | Value |
-|---------------------|-------------|-------|
-| redis.port          |             |       |
-| redis.host          |             |       |
-| redis.stream        |             |       |
-| redis.consumer      |             |       |
-| redis.consumerGroup |             |       |
-|                     |             |       |
-|                     |             |       |
-

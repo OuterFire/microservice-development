@@ -4,7 +4,7 @@ The purpose of this repository is to showcase the end to end lifecycle of micros
 
 **Key points:**
 
-* **Golang** programing language used to build the microservices. 
+* **Golang** programing language used to develop the microservices. 
 * **Robot framework** in addition of **python libraries** to test **functional** and **robustness** test cases.
 * **Kubernetes Cluster: Minikube** utilization to deploy the microservices.
 * **Docker** to build microservice images which then will be used in the helm chart deployment.
