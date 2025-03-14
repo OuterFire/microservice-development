@@ -98,35 +98,3 @@ Notification Message **schema**:
   }
 }
 ```
-
-# Folder Structure
-
-- /chart - ***(master helm chart containing sub charts as dependencies)***
-  - /charts - ***(sub charts)***
-    - event-consumer-0.0.1.tgz - ***(helm sub chart archive)***
-    - event-producer-0.0.1.tgz- ***(helm sub chart archive)***
-    - event-simulator-0.0.1.tgz- ***(helm sub chart archive)***
-    - redis-20.7.0.tgz- ***(helm chart archive)***
-- /documents - ***(contains all the documentation readme's)***
-- /event-consumer - ***(microservice)***
-  - /chart - ***(helm chart)***
-  - /docker - ***(docker file)***
-  - /src - ***(go code)***
-- /event-producer - ***(microservice)***
-  - /chart - ***(helm chart)***
-  - /docker - ***(docker file)***
-  - /src - ***(go code)***
-- /event-simulator - ***(microservice)***
-  - /chart - ***(helm chart)***
-  - /docker - ***(docker file)***
-  - /src - ***(go code)***
-- /robot - ***(robot framework)***
-  - /chart - ***(helm chart)***
-  - /docker - ***(docker file)***
-  - /test - ***(robot test cases)***
-    - /python_library - ***(pythong code)***
-      - /helper - ***(python helpers)***
-    - /robot_resource - ***(robot resources)***
-    - test_functional.robot - ***(robot functional test)***
-    - test_robustness.robot - ***(robot robustness test)***
-- application-1.0.0.tgz - ***(master helm chart archive)***
